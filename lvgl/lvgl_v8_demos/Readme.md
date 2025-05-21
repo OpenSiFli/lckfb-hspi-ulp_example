@@ -31,6 +31,10 @@
     #error "Select a demo application to start"
 #endif
 ```
+我们可以在menuconfig中选择想使用的demo
+
+![](assets/demo_pick.png)
+
 ## 二、main.c 分析 —— 程序入口与主循环
 
 1. main 函数

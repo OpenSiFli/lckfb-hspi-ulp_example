@@ -22,18 +22,18 @@
 
 如果缺失上面三个宏，就需要通过`menuconfig`如下命令进行打开(注意：缺失可能并不会报出错误，若配置串口没有信息打印请及时查看是否打开)
 ```c
-menuconfig --board=sf32lb52-ulp //board=<开发板名称>
+menuconfig --board=sf32lb52-ulp
 ```
 如下图，选择uart2和rx dma，保存并退出menuconfig，编译后查看`rtconfig.h`宏是否生成
 ![alt text](assets/menuconfig.png)
 * 切换到例程project目录，运行scons命令执行编译：
 ```c
-scons --board=sf32lb52-ulp -j8 //board=<开发板名称>
+scons --board=sf32lb52-ulp -j8
 ```
 * 运行`build_sf32lb52-ulp_hcpu\uart_download.bat`，按提示选择端口即可进行下载：
 
 ```c
-j\uart_download.bat //执行烧录脚本
+build_sf32lb52-ulp_hcpu\uart_download.bat //执行烧录脚本
 
 Uart Download
 
@@ -44,13 +44,14 @@ please input the serial port num:5 //选择对应串口号
 
 |版型名称  | UART       | TX(物理位置)     | RX(物理位置)   |    
 |--------|------------|---------------|-------------------|
-|525    | UART2     | PAD_PA19（25）    | PAD_PA18（27）    |   
+|黄山派  | UART2     | PAD_PA19（25）    | PAD_PA18（27）    |   
 
 
 * PA19软件配置为UART2的TX，连接到电脑usb转串口的RX
 * PA18软件配置为UART2的RX，连接到电脑usb转串口的TX
 * GND连接到usb转串口的GND，如下图：
-------
+
+![](assets/uart_connect.png)
 
 
 
@@ -132,8 +133,8 @@ menuconfig --board=sf32lb52-ulp
 1. UART引脚怎么选：可以配置到任意带有PA*_I2C_UART功能的IO输出UART2波形（想查询引脚复用表可在项目路径下文件中查找如：bf0_pin_const.c）
 - 本例程演示的是外接USB转串口模块，因此引脚选择有排针引出的引脚
 ![alt text](assets/pin_const.png)
-2.  HAL_PIN_Set 最后一个参数为hcpu/lcpu选择, 1:选择hcpu,0:选择lcpu 
-3.  Hcpu的PA口不能配置为Lcpu的uart外设，比如uart5,uart6输出
+2.  HAL_PIN_Set 最后一个参数为HCPU/LCPU选择, 1:选择HCPU,0:选择LCPU
+3.  HCPU的PA口不能配置为LCPU的uart外设，比如uart5,uart6输出
 ---
 * 串口初始化函数int uart2_init(void)部分内容讲解:\
 先后`rt_device_find`,`rt_device_control`,`rt_device_open`分别查找、配置和打开`uart2`设备
