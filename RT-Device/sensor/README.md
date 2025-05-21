@@ -26,13 +26,13 @@ please input the serial port num:6
 
 #### sensor配置流程
 
-* 在menuconfig中打开相应传感器和`I2C3`
+* 在menuconfig中打开相应传感器和`I2C1`
 
 ```
 scons --board=yellow_mountain --menuconfig
 ```
 ![alt text](assets/menuconfig.png)
-![alt text](assets/I2C3.png)
+![alt text](assets/I2C1.png)
 
 ## 硬件连接
 我们查看一下立创黄山派的原理图，发现各传感器都是使用`PA_39_I2C1_SDA` 与`PA_40_I2C1_SLC`进行数据的接收与发送,外设总线使用的是`I2C1`。
@@ -42,7 +42,7 @@ scons --board=yellow_mountain --menuconfig
 ```c
 static void sensors_init(struct rt_sensor_config *cfg)
 {
-    cfg->intf.dev_name = "i2c3";
+    cfg->intf.dev_name = "i2c1";
     rt_hw_ltr303_init("ltr303", cfg);
     rt_hw_mmc56x3_init("mmc56x3", cfg);
 
@@ -53,21 +53,12 @@ static void sensors_init(struct rt_sensor_config *cfg)
 ```
 
 ## 硬件配置
-下面主要对具体I2C通信的引脚`PA_39`和`PA_40`设置为无上下拉模式,以及`PA_30`和`PA_38`引脚进行配置
+下面主要对具体I2C通信的引脚`PA_39`和`PA_40`设置为上拉模式
 ```c
 static void board_io_init(void)
 {
-    HAL_PIN_Set(PAD_PA40, I2C3_SCL, PIN_PULLUP, 1);
-    HAL_PIN_Set(PAD_PA39, I2C3_SDA, PIN_PULLUP, 1);
-
-    rt_base_t vsys = GET_PIN(1,38);
-    rt_pin_mode(vsys, PIN_MODE_OUTPUT);
-    rt_pin_write(vsys, PIN_HIGH);
-
-    rt_base_t pin_id = GET_PIN(1,30);
-    rt_pin_mode(pin_id, PIN_MODE_OUTPUT);
-    rt_pin_write(pin_id, PIN_HIGH);
-    rt_thread_mdelay(50);
+    HAL_PIN_Set(PAD_PA40, I2C1_SCL, PIN_PULLUP, 1);
+    HAL_PIN_Set(PAD_PA39, I2C1_SDA, PIN_PULLUP, 1);
 }
 ```
 

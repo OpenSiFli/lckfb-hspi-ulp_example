@@ -18,23 +18,14 @@
 // 初始化硬件IO
 static void board_io_init(void)
 {
-    HAL_PIN_Set(PAD_PA40, I2C3_SCL, PIN_PULLUP, 1);
-    HAL_PIN_Set(PAD_PA39, I2C3_SDA, PIN_PULLUP, 1);
-
-    rt_base_t vsys = GET_PIN(1,38);
-    rt_pin_mode(vsys, PIN_MODE_OUTPUT);
-    rt_pin_write(vsys, PIN_HIGH);
-
-    rt_base_t pin_id = GET_PIN(1,30);
-    rt_pin_mode(pin_id, PIN_MODE_OUTPUT);
-    rt_pin_write(pin_id, PIN_HIGH);
-    rt_thread_mdelay(50);
+    HAL_PIN_Set(PAD_PA40, I2C1_SCL, PIN_PULLUP, 1);
+    HAL_PIN_Set(PAD_PA39, I2C1_SDA, PIN_PULLUP, 1);
 }
 
 // 初始化所有传感器
 static void sensors_init(struct rt_sensor_config *cfg)
 {
-    cfg->intf.dev_name = "i2c3";
+    cfg->intf.dev_name = "i2c1";
     rt_hw_ltr303_init("ltr303", cfg);
     rt_hw_mmc56x3_init("mmc56x3", cfg);
 
