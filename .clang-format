@@ -1,50 +1,9 @@
-# .clang-format
-# ----------------------------------------------------------------------
-# 完全禁用预设样式，从零开始手工配置
-BasedOnStyle: None
-
-# 缩进
-IndentWidth: 4     # --indent=spaces=4
-TabWidth: 4        # 将制表符也按 4 列对齐
-UseTab: Never      # --convert-tabs（全部转为空格）
-
-# 换行风格：Allman 大括号风格
-BreakBeforeBraces: Allman
-BraceWrapping:
-  AfterClass: true
-  AfterControlStatement: true
-  AfterEnum: true
-  AfterFunction: true
-  AfterNamespace: true
-  AfterStruct: true
-  AfterUnion: true
-  BeforeElse: true
-
-# 指针对齐：绑定到变量名（AStyle 的 --align-pointer=name）
-PointerAlignment: Right
-DerivePointerAlignment: false
-
-# 操作符两侧加空格（AStyle 的 --pad-oper）
-# Clang-Format 默认会在大多数二元、赋值等操作符两边插入空格，无需额外配置
-
-# 函数调用/声明的圆括号内不留空格（AStyle 的 --unpad-paren）
-SpacesInParentheses: false
-
-# 关键字（if/for/while/switch 等）与 '(' 之间保留空格（AStyle 的 --pad-header）
-SpaceBeforeParens: ControlStatements
-
-# 预处理指令：'#' 与指令关键字之间加空格
-# （AStyle 的 --pad-header 在有些文档中也指“# include”风格，这里映射为 SpaceAfterHash）
-SpaceAfterHash: true
-
-# 换行符：Linux 风格 LF（AStyle 的 --lineend=linux）
-DeriveLineEnding: false
-LineEnding: LF
-
-# 关于预处理块缩进（AStyle 的 --indent-preproc-block V）：
-# Clang-Format 会自动缩进 #if…#endif 中的代码，但不会对 #if/#endif 指令自身做嵌套缩进，
-# 目前无可配置项与之对应。
-
-# 以下是一些常用的短函数单行策略，与你的 AStyle 配置无关，可按需增删
+---
+BasedOnStyle: LLVM
+AccessModifierOffset: -4
 AllowShortFunctionsOnASingleLine: None
-# ----------------------------------------------------------------------
+BreakBeforeBraces: Allman
+IndentWidth: 4
+PPIndentWidth: 4
+TabWidth: 4
+SpacesInParentheses: false
