@@ -5,6 +5,40 @@
 - 表盘
 - 立方体左右旋转
 
+## 添加蜂窝功能
+首先想要在蜂窝界面中添加一个新的蜂窝，则需要调```BUILTIN_APP_EXPORT()```这个接口进行一个app的注册。
+
+例如：
+``` 
+LV_IMG_DECLARE(img_LiChuang);//声明一个图像资源，并转化为C数组，用于应用显示
+#define APP_ID "hello_world"//定义应用的唯一标识符，用于系统识别和管理应用（每个APP都有唯一的一个标识ID）
+static int app_main(intent_t i)//入口函数，用于系统启动时调用
+{
+    gui_app_regist_msg_handler(APP_ID, msg_handler);
+    return 0;
+}
+BUILTIN_APP_EXPORT(LV_EXT_STR_ID(rotation3d), LV_EXT_IMG_GET(img_LiChuang), APP_ID, app_main);//注册消息处理函数，使应用能够响应系统发送的各种生命周期事件（如启动、暂停、恢复、停止）
+```
+
+然后在使用状态机```msg_handler() ```中的启动函数on_start()中添加跳转之后的页面的设置（例如需要点击进去之后显示hello world）。
+
+```
+static void on_start(void)
+{
+    //容器创建与布局
+    lv_obj_t *lc = lv_obj_create(lc);//在当前活动屏幕上创建一个空白的基础容器对象（lc）,作为后面添加其他元素的父容器
+    lv_obj_set_size(lc, LV_HOR_RES_MAX, LV_VER_RES_MAX);//设置屏幕的水平和垂直分辨率，确保容器铺满整个屏幕
+    lv_obj_align(lc, LV_ALIGN_CENTER, 0, 0);//将容器居中对齐
+    
+    //文本标签创建与样式设置
+    lv_obj_t *hello_label = lv_label_create(lv_scr_act());//在父容器（lc）上创建文本标签
+    lv_label_set_text(hello_label, "Hello World");//设置需要显示的字体（hello world）
+    lv_ext_set_local_font(hello_label, FONT_BIGL, LV_COLOR_WHITE);//设置字体样式大小（FONT_BIGL）和颜色白色（LV_COLOR_WHITE）
+    lv_obj_center(hello_label); //居中显示
+
+    lv_img_cache_invalidate_src(NULL);//清空LVGL的图像缓存，用于防止内存占用过高或图像更新不及时
+}
+```
 
 ## 指定字体
 参考`src/resource/fonts/SConscript`，通过在CPPDEFINES中添加`FREETYPE_FONT_NAME`宏定义，可以注册对应TTF字体到LVGL中
