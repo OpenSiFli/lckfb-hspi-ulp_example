@@ -59,7 +59,7 @@ int main(void)
         {
             rt_kprintf("-> %s\n", rgb_color_arry[i].color_name);
             rgb_led_set_color(rgb_color_arry[i].color);
-            rt_thread_mdelay(5000);
+            rt_thread_mdelay(1000);
         }
     }
     return 0;
