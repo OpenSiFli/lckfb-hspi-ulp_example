@@ -5,24 +5,39 @@
 - 表盘
 - 立方体左右旋转
 
-## 添加蜂窝功能
-首先想要在蜂窝界面中添加一个新的蜂窝，则需要调```BUILTIN_APP_EXPORT()```这个接口进行一个app的注册。
+## 添加蜂窝应用
 
-例如：
-``` 
-LV_IMG_DECLARE(img_LiChuang);//声明一个图像资源，并转化为C数组，用于应用显示
-#define APP_ID "hello_world"//定义应用的唯一标识符，用于系统识别和管理应用（每个APP都有唯一的一个标识ID）
-static int app_main(intent_t i)//入口函数，用于系统启动时调用
+如果想添加一个新的蜂窝应用，可以参考`gui_apps/LC_Hello_World`目录下的代码结构。
+
+我们使用`BUILTIN_APP_EXPORT`宏来注册应用，这个宏会将应用的相关信息（如ID、图标、入口函数等）导出到系统中，使其能够被识别和调用。
+
+这个宏的签名是
+
+```c
+#define BUILTIN_APP_EXPORT(name, icon, id, entry) 
+```
+
+- `name` 是应用的名称，通常是一个字符串常量；如果是多语言支持的字符串，则使用`LV_EXT_STR_ID`宏来获取对应的字符串ID。
+- `icon` 是应用的图标，通常是一个图像资源，可以使用`LV_EXT_IMG_GET`宏来获取对应的图像资源。
+- `id` 是应用的唯一标识符，通常是一个字符串常量。
+- `entry` 是应用的入口函数，通常是一个函数指针。
+
+需要注意的是，在 watch demo中，默认已经打开了多语言的支持，因此我们需要把需要显示的字符串资源放在`src/resource/strings/`下的`en_US.json`和`zh_CN.json`文件中，并使用`LV_EXT_STR_ID`宏来获取对应的字符串ID，否则会出现编译错误。
+
+``` c
+LV_IMG_DECLARE(img_LiChuang);   //声明一个图像资源，并转化为C数组，用于应用显示
+#define APP_ID "hello_world"    //定义应用的唯一标识符，用于系统识别和管理应用（每个APP都有唯一的一个标识ID）
+static int app_main(intent_t i) //入口函数，用于系统启动时调用
 {
     gui_app_regist_msg_handler(APP_ID, msg_handler);
     return 0;
 }
-BUILTIN_APP_EXPORT(LV_EXT_STR_ID(rotation3d), LV_EXT_IMG_GET(img_LiChuang), APP_ID, app_main);//注册消息处理函数，使应用能够响应系统发送的各种生命周期事件（如启动、暂停、恢复、停止）
+BUILTIN_APP_EXPORT(LV_EXT_STR_ID(lckfb), LV_EXT_IMG_GET(img_LiChuang), APP_ID, app_main); //注册消息处理函数，使应用能够响应系统发送的各种生命周期事件（如启动、暂停、恢复、停止）
 ```
 
 然后在使用状态机```msg_handler() ```中的启动函数on_start()中添加跳转之后的页面的设置（例如需要点击进去之后显示hello world）。
 
-```
+```c
 static void on_start(void)
 {
     //容器创建与布局

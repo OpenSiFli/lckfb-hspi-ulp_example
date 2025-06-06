@@ -1,5 +1,5 @@
 # GPIO 示例
-* 源码路径：yellow_mountain_example/gpio
+* 源码路径：sf32lb52-lchspi-ulp_example/gpio
 芯片上的引脚一般分为4类：电源、时钟、控制与 I/O，I/O 口在使用模式上又分为 General Purpose Input Output（通用输入 / 输出），简称 GPIO，与功能复用 I/O（如 SPI/I2C/UART 等）。
 ## GPIO API介绍
 SiFli-SDK 目前的基于 RT-Thread，对于大部分外设都已经适配了RT-Thread的设备框架，熟悉RT-Thread的开发者可以直接跳过该部分教程，直接使用。GPIO设备在RT-Thread中被抽象为PIN设备，具体介绍可以参考官方文档[RT-Thread GPIO API](https://www.rt-thread.org/document/site/#/rt-thread-version/rt-thread-standard/programming-manual/device/pin/pin) 。在接下来的示例中，我们会逐步讲解每个API的使用方法。
@@ -19,20 +19,20 @@ SiFli-SDK 目前的基于 RT-Thread，对于大部分外设都已经适配了RT-
 ## 例程的使用
 ### 编译和烧录
 在文件中增加`#include <board.h> `如果不包含，可能会遇到错误提示没有定义.
-如果还有错误检查menuconfig中的配置，在终端执行`scons --board=yellow_mountain --menuconfig`后，使用⇧和⇩方向键在不同菜单项间移动，按Enter键进入子菜单配置，Space选中菜单项，按D保存并退出menuconfig，具体配置如下图：
+如果还有错误检查menuconfig中的配置，在终端执行`scons --board=sf32lb52-lchspi-ulp --menuconfig`后，使用⇧和⇩方向键在不同菜单项间移动，按Enter键进入子菜单配置，Space选中菜单项，按D保存并退出menuconfig，具体配置如下图：
 
 ![alt text](assets/gpio_menuconfig.png) 
  
 切换到例程project目录，运行scons命令执行编译：
 
 ```
-scons --board=yellow_mountain -j8
+scons --board=sf32lb52-lchspi-ulp -j8
 ```
 
-运行`build_yellow_mountain_hcpu\uart_download.bat`，按提示选择端口即可进行下载：
+运行`build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat`，按提示选择端口即可进行下载：
 
 ```
-build_yellow_mountain_hcpu\uart_download.bat
+build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat
 
 Uart Download
 

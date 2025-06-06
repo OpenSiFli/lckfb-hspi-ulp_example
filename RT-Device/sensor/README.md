@@ -9,11 +9,11 @@ Sensor（传感器）是物联网重要的一部分，“Sensor 之于物联网�
 ### 编译和烧录
 切换到例程project目录，运行scons命令执行编译：
 ```
-scons --board=yellow_mountain -j8
+scons --board=sf32lb52-lchspi-ulp -j8
 ```
 执行烧写命令：
 ```
-build_yellow_mountain_hcpu\uart_download.bat
+build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat
 ```
 按提示选择端口即可进行下载：
 ```none
@@ -29,7 +29,7 @@ please input the serial port num:6
 * 在menuconfig中打开相应传感器和`I2C1`
 
 ```
-scons --board=yellow_mountain --menuconfig
+scons --board=sf32lb52-lchspi-ulp --menuconfig
 ```
 ![alt text](assets/menuconfig.png)
 ![alt text](assets/I2C1.png)

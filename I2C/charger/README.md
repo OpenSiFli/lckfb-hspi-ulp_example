@@ -66,7 +66,7 @@ addr参数则为从机模式下的设备地址，我们使用的是主机模式�
 
 ### 硬件配置
 
-另外你可能会感到好奇，在上述的操作中我们并没有对具体的引脚进行配置，仅仅只有总线的名称，那rtt是怎么知道我们要用哪个引脚呢？其实这是因为在bsp中就已经进行了配置，在main函数之前就已经进行了初始化。具体的源码路径在`$SDK_PATH/customer/boards/yellow_mountain_base/bsp_pinmux.c`中，查找注释为`I2C2 (charger)`即可看到。
+另外你可能会感到好奇，在上述的操作中我们并没有对具体的引脚进行配置，仅仅只有总线的名称，那rtt是怎么知道我们要用哪个引脚呢？其实这是因为在bsp中就已经进行了配置，在main函数之前就已经进行了初始化。具体的源码路径在`$SDK_PATH/customer/boards/sf32lb52-lchspi-ulp_base/bsp_pinmux.c`中，查找注释为`I2C2 (charger)`即可看到。
 
 ```c
 // I2C2 (charger)

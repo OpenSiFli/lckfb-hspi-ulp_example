@@ -90,6 +90,6 @@ static int app_main(intent_t i)
     return 0;
 }
 
-BUILTIN_APP_EXPORT(LV_EXT_STR_ID(rotation3d), LV_EXT_IMG_GET(img_LiChuang), APP_ID, app_main);
+BUILTIN_APP_EXPORT(LV_EXT_STR_ID(lckfb), LV_EXT_IMG_GET(img_LiChuang), APP_ID, app_main);
 
 #endif

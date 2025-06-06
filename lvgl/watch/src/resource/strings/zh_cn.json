@@ -46,5 +46,6 @@
     "py_app4": "Python应用4",
     "py_app5": "Python应用5",
     "rotation3d":"3D旋转",
-    "lvgl_demos":"LVGL示例DEMO"
+    "lvgl_demos":"LVGL示例DEMO",
+    "lckfb": "立创开发板"
 }

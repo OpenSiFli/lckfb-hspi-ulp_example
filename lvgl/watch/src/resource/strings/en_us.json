@@ -46,5 +46,6 @@
     "py_app4": "PythonApp4",
     "py_app5": "PythonApp5",
     "rotation3d":"Rotation 3D",
-    "lvgl_demos":"LVGL demos"
+    "lvgl_demos":"LVGL demos",
+    "lckfb": "LCKFB"
 }

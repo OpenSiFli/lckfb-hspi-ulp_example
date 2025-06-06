@@ -1,2 +1,2 @@
-# yellow_mountain_example
+# lchspi_example
 黄山派示例
