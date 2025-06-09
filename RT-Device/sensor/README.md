@@ -26,7 +26,7 @@ please input the serial port num:6
 
 #### sensor配置流程
 
-* 在menuconfig中打开相应传感器和`I2C1`
+* 在menuconfig中打开相应传感器和`I2C3`
 
 ```
 scons --board=sf32lb52-lchspi-ulp --menuconfig
@@ -35,14 +35,14 @@ scons --board=sf32lb52-lchspi-ulp --menuconfig
 ![alt text](assets/I2C1.png)
 
 ## 硬件连接
-我们查看一下立创黄山派的原理图，发现各传感器都是使用`PA_39_I2C1_SDA` 与`PA_40_I2C1_SLC`进行数据的接收与发送,外设总线使用的是`I2C1`。
+我们查看一下立创黄山派的原理图，发现各传感器都是使用`PA_39_I2C3_SDA` 与`PA_40_I2C3_SLC`进行数据的接收与发送,外设总线使用的是`I2C3`。
 ![alt text](assets/sensor_1.png)
 ## 初始化传感器
 想要初始化传感器，我们需要一个初始化函数，在工程中我们有如下代码：
 ```c
 static void sensors_init(struct rt_sensor_config *cfg)
 {
-    cfg->intf.dev_name = "i2c1";
+    cfg->intf.dev_name = "i2c3";
     rt_hw_ltr303_init("ltr303", cfg);
     rt_hw_mmc56x3_init("mmc56x3", cfg);
 
@@ -57,8 +57,8 @@ static void sensors_init(struct rt_sensor_config *cfg)
 ```c
 static void board_io_init(void)
 {
-    HAL_PIN_Set(PAD_PA40, I2C1_SCL, PIN_PULLUP, 1);
-    HAL_PIN_Set(PAD_PA39, I2C1_SDA, PIN_PULLUP, 1);
+    HAL_PIN_Set(PAD_PA40, I2C3_SCL, PIN_PULLUP, 1);
+    HAL_PIN_Set(PAD_PA39, I2C3_SDA, PIN_PULLUP, 1);
 }
 ```
 
