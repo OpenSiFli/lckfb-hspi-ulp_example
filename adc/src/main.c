@@ -22,7 +22,7 @@ static rt_err_t adc_init(void)
         rt_kprintf("ADC device not found\n");
         return RT_ERROR;
     }
-    HAL_PIN_Set_Analog(PAD_PA28, 1);   
+    HAL_PIN_Set_Analog(PAD_PA34, 1);   
     return RT_EOK;
 }
 static void adc_example(void)
