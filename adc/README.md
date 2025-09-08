@@ -83,7 +83,7 @@ void adc_example(void)
     }
     rt_kprintf("VBAT read value: %d\n", value);                       // 打印PA_34读取的值
     rt_adc_disable((rt_adc_device_t)s_adc_dev, read_arg.channel);    // 禁用ADC通道
-    HAL_PIN_Set_Analog(PAD_PA28, 1);                                 // 设置PA28为模拟输入模式
+    HAL_PIN_Set_Analog(PAD_PA34, 1);                                 // 设置PA34为模拟输入模式
     read_arg.channel = ADC_CHANNEL;                                  // 设置ADC通道
     r = rt_adc_enable((rt_adc_device_t)s_adc_dev, read_arg.channel); // 使能ADC通道
     if (r != RT_EOK)

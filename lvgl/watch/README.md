@@ -102,10 +102,10 @@ config FREETYPE_TINY_FONT_FULL
 ## 编译
 * 切换到例程project目录，运行scons命令执行编译：
 ```c
-scons --board=sf32lb52-ulp -j8
+scons --board=sf32lb52-lchspi-ulp -j8
 ```
 
-编译后可查看build_sf32lb52-ulp_hcpu\rtconfig.h中宏定义配置情况
+编译后可查看build_sf32lb52-lchspi-ulp_hcpu\rtconfig.h中宏定义配置情况
 
 - 包含了下面宏（此处列举一些常用配置）
 ```c

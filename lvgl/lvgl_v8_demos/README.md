@@ -9,8 +9,8 @@
 - Music player demo 演示音乐播放
 
 ## 工程编译及下载：
-- 执行`scons --board=sf32lb52-ulp -j8`即可生成工程
-- 下载可以执行build_sf32lb52-ulp_hcpu\uart_download.bat输入下载UART的端口号执行
+- 执行`scons --board=sf32lb52-lchspi-ulp -j8`即可生成工程
+- 下载可以执行build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat输入下载UART的端口号执行
 
             
 使用宏定义来选择启动的demo

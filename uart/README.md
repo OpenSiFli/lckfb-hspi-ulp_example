@@ -2,7 +2,7 @@
 
 ## 支持的平台
 例程可以运行在以下开发板.
-* sf32lb52-ulp
+* sf32lb52-lchspi-ulp
 
 ## 概述
 * 在RT-Thread操作系统下采用RX DMA方式，操作UART2检验其串口的收发能力
@@ -22,18 +22,18 @@
 
 如果缺失上面三个宏，就需要通过`menuconfig`如下命令进行打开(注意：缺失可能并不会报出错误，若配置串口没有信息打印请及时查看是否打开)
 ```c
-menuconfig --board=sf32lb52-ulp
+menuconfig --board=sf32lb52-lchspi-ulp
 ```
 如下图，选择uart2和rx dma，保存并退出menuconfig，编译后查看`rtconfig.h`宏是否生成
 ![alt text](assets/menuconfig.png)
 * 切换到例程project目录，运行scons命令执行编译：
 ```c
-scons --board=sf32lb52-ulp -j8
+scons --board=sf32lb52-lchspi-ulp -j8
 ```
-* 运行`build_sf32lb52-ulp_hcpu\uart_download.bat`，按提示选择端口即可进行下载：
+* 运行`build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat`，按提示选择端口即可进行下载：
 
 ```c
-build_sf32lb52-ulp_hcpu\uart_download.bat //执行烧录脚本
+build_sf32lb52-lchspi-ulp_hcpu\uart_download.bat //执行烧录脚本
 
 Uart Download
 
@@ -117,7 +117,7 @@ uart_rec: cnt = 0,count = 260
 #define BSP_USING_UART2 1
 #define BSP_UART2_RX_USING_DMA 1
 
-menuconfig --board=sf32lb52-ulp
+menuconfig --board=sf32lb52-lchspi-ulp
 ```
 
 
